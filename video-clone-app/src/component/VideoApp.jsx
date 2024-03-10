@@ -4,7 +4,7 @@ import VideoPlayer from './VideoPlayer';
 
 const VideoApp = () => {
     const [videos, setVideos] = useState([]);
-    const [selectedVideo, setSelectedVideo] = useState(null);
+    const [selectedVideo, setSelectedVideo] = useState();
 
   useEffect(() => {
     fetchVideos(0); // Fetch initial page
@@ -32,7 +32,9 @@ const VideoApp = () => {
       <h1>Video Clone</h1>
       <div className="content">
         <VideoList videos={videos} onVideoClick={handleVideoClick} />
-        {selectedVideo && <VideoPlayer video={selectedVideo} />}
+
+
+        {/* {selectedVideo && <VideoPlayer video={selectedVideo} />} */}
       </div>
     </div>
   );
