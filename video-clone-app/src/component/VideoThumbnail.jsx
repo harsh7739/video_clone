@@ -25,11 +25,18 @@
 // export default VideoThumbnail;
 
 
+
+
+
+
 import React, { useState } from 'react';
 import VideoPlayer from './VideoPlayer';
+import { FcLike } from "react-icons/fc";
 
 const VideoThumbnail = ({ video }) => {
     const [selectedVideo, setSelectedVideo] = useState(null);
+    const [reactioncount,setReactioncount]=useState(video.reaction.count)
+    localStorage.setItem("reaction_count",reactioncount)
 
     return (
         <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 p-4">
@@ -38,16 +45,18 @@ const VideoThumbnail = ({ video }) => {
             ) : (
                 <div
                     className="border border-gray-300 rounded-md overflow-hidden cursor-pointer"
-                    onClick={() => setSelectedVideo(video)}
+                    // onClick={() => setSelectedVideo(video)}
                 >
                     <img
                         className="w-full h-48 object-cover"
                         src={video.submission.thumbnail}
                         alt={video.submission.title}
+                        onClick={() => setSelectedVideo(video)}
                     />
-                    <div className="p-4">
-                        <h3 className="text-lg font-semibold">{video.submission.title}</h3>
-                        <p className="text-sm text-gray-600">{video.submission.description}</p>
+                    <div className="p-4" >
+                        <h3 className="text-lg font-semibold w-full">{video.submission.title}</h3>
+                        <p className="text-sm text-gray-600 w-full">{video.submission.description}</p>
+                        <button onClick={()=>setReactioncount(prev=>prev+1)}>Like <FcLike /> {reactioncount}</button>
                     </div>
                 </div>
             )}
