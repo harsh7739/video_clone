@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import VideoList from './VideoList';
 import VideoPlayer from './VideoPlayer';
+import VideoThumbnail from './VideoThumbnail';
 
 const VideoApp = () => {
     const [videos, setVideos] = useState([]);
@@ -28,9 +29,7 @@ const VideoApp = () => {
   const handleVideoClick = (video) => {
     setSelectedVideo(video);
   };
-  function handleNextPage(){
-    setPagecount(prev=>prev+1)
-  }
+  
 
 console.log(pagecount)
   return (
@@ -42,7 +41,8 @@ console.log(pagecount)
 
 
         <div className="content ">
-          <VideoList videos={videos} handleNextPage={handleNextPage} onVideoClick={handleVideoClick} />
+          <VideoList videos={videos} pagecount={pagecount}  onVideoClick={handleVideoClick} />
+         
         </div>
 
 

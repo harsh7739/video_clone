@@ -21,11 +21,11 @@
 import React from 'react';
 import VideoThumbnail from './VideoThumbnail';
 
-const VideoList = ({ videos, onVideoClick,handleNextPage }) => {
+const VideoList = ({ videos, onVideoClick,pagecount }) => {
   return (
     <div >
       {videos.map((video) => (
-        <VideoThumbnail key={video.id} handleNextPage={handleNextPage} video={video} onClick={onVideoClick} />
+        <VideoThumbnail key={video.id} pagecount={pagecount}  video={video} onClick={onVideoClick} />
       ))}
     </div>
   );

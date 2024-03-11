@@ -33,7 +33,7 @@ import React, { useState } from 'react';
 import VideoPlayer from './VideoPlayer';
 import { FcLike } from "react-icons/fc";
 
-const VideoThumbnail = ({ video,handleNextPage }) => {
+const VideoThumbnail = ({ video,pagecount }) => {
     const [selectedVideo, setSelectedVideo] = useState(null);
     const [reactioncount,setReactioncount]=useState(video.reaction.count)
     localStorage.setItem("reaction_count",reactioncount)
@@ -41,7 +41,7 @@ const VideoThumbnail = ({ video,handleNextPage }) => {
     return (
         <div className="w-300px h-500px sm:w-90%  md:w-5/6  lg:w-4/6  xl:w-3/6 m-auto   p-4">
             {selectedVideo ? (
-                <VideoPlayer video={video} handleNextPage={handleNextPage} />
+                <VideoPlayer pagecount={pagecount} video={video}  />
             ) : (
                 <div
                     // className="border  border-gray-300 rounded-md overflow-hidden cursor-pointer"
