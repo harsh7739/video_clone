@@ -6,7 +6,7 @@
 
 #### react, tailwindcss
 
-## Deployed link :-  
+## Deployed link :-  https://video-clone-jsiuns4ed-harsh7739.vercel.app/
 
 ### Screenshot 
 ![Screenshot (287)](https://github.com/harsh7739/video_clone/assets/115932394/5bc23a99-0df4-4149-8d37-26eac76f7a2e)
