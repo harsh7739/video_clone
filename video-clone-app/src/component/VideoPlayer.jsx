@@ -37,9 +37,6 @@ const navigate = useNavigate()
          <p>{video.submission.description}</p>
 
       </div>
-
-   
-   {/* <button onClick={handleNextPage}>Next Page</button> */}
  </div>
   
     
