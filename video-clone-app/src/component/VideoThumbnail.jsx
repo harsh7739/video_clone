@@ -33,30 +33,30 @@ import React, { useState } from 'react';
 import VideoPlayer from './VideoPlayer';
 import { FcLike } from "react-icons/fc";
 
-const VideoThumbnail = ({ video }) => {
+const VideoThumbnail = ({ video,handleNextPage }) => {
     const [selectedVideo, setSelectedVideo] = useState(null);
     const [reactioncount,setReactioncount]=useState(video.reaction.count)
     localStorage.setItem("reaction_count",reactioncount)
 
     return (
-        <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 p-4">
+        <div className="w-300px h-500px sm:w-90%  md:w-5/6  lg:w-4/6  xl:w-3/6 m-auto   p-4">
             {selectedVideo ? (
-                <VideoPlayer video={video} />
+                <VideoPlayer video={video} handleNextPage={handleNextPage} />
             ) : (
                 <div
-                    className="border border-gray-300 rounded-md overflow-hidden cursor-pointer"
-                    // onClick={() => setSelectedVideo(video)}
+                    // className="border  border-gray-300 rounded-md overflow-hidden cursor-pointer"
+                    onClick={() => setSelectedVideo(video)}
                 >
                     <img
-                        className="w-full h-48 object-cover"
+                        className="  object-cover sm:w-90%  md:w-5/6  lg:w-4/6  xl:w-5/6 m-auto"
                         src={video.submission.thumbnail}
                         alt={video.submission.title}
                         onClick={() => setSelectedVideo(video)}
                     />
-                    <div className="p-4" >
+                    <div className="p-4 m-auto sm:w-90%  md:w-5/6  lg:w-4/6  xl:w-3/6 m-auto"  >
                         <h3 className="text-lg font-semibold w-full">{video.submission.title}</h3>
-                        <p className="text-sm text-gray-600 w-full">{video.submission.description}</p>
-                        <button onClick={()=>setReactioncount(prev=>prev+1)}>Like <FcLike /> {reactioncount}</button>
+                        <p className="text-sm  text-gray-600 ">{video.submission.description}</p>
+                        <button onClick={()=>setReactioncount(prev=>prev+1)}><span className='text-red-950'>Likes</span> {reactioncount}</button>
                     </div>
                 </div>
             )}

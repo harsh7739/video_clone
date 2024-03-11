@@ -5,18 +5,21 @@ import VideoPlayer from './VideoPlayer';
 const VideoApp = () => {
     const [videos, setVideos] = useState([]);
     const [selectedVideo, setSelectedVideo] = useState();
+    const [pagecount,setPagecount]=useState(0)
 
   useEffect(() => {
-    fetchVideos(0); // Fetch initial page
-  }, []);
+    fetchVideos(pagecount); // Fetch initial page
+  }, [pagecount]);
 
   const fetchVideos = async (page) => {
     try {
-      const response = await fetch(`https://internship-service.onrender.com/videos?page=${page}`);
+      const response = await fetch(`https://internship-service.onrender.com/videos?limit=1&page=${page}`);
       const data = await response.json();
     //   setVideos(data);
     setVideos(data.data.posts)
       console.log(data.data.posts)
+      // console.log(data)
+
     } catch (error) {
       console.error('Error fetching videos:', error);
     }
@@ -25,17 +28,32 @@ const VideoApp = () => {
   const handleVideoClick = (video) => {
     setSelectedVideo(video);
   };
+  function handleNextPage(){
+    setPagecount(prev=>prev+1)
+  }
 
-
+console.log(pagecount)
   return (
-    <div className="app">
-      <h1>Video Clone</h1>
-      <div className="content">
-        <VideoList videos={videos} onVideoClick={handleVideoClick} />
+    <div style={{display:"flex"}} >
+     
+        <button
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        onClick={()=>setPagecount(prev=>prev-1)} disabled={pagecount==0}>Prev</button>
 
 
-        {/* {selectedVideo && <VideoPlayer video={selectedVideo} />} */}
-      </div>
+        <div className="content ">
+          <VideoList videos={videos} handleNextPage={handleNextPage} onVideoClick={handleVideoClick} />
+        </div>
+
+
+        <button
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        onClick={()=>{
+          console.log(pagecount)
+          setPagecount(prev=>prev+1)
+        }}>Next</button>
+
+
     </div>
   );
 };
